@@ -10,9 +10,10 @@ import 'package:meta/meta.dart';
 
 import 'box_plot_helper.dart';
 import 'sample_set.dart';
-import 'src/frame_nanny.dart';
 import 'src/graph_math.dart';
 import 'src/range_mapping.dart';
+
+const _maxFrameDuration = Duration(milliseconds: 34);
 
 class BoxPlotBar extends StatefulWidget {
   final SampleSet sampleSet;
@@ -26,7 +27,6 @@ class BoxPlotBar extends StatefulWidget {
 class _BoxPlotBarState extends State<BoxPlotBar> with TickerProviderStateMixin {
   final _fillColor = Colors.blue;
   final _notifier = ValueNotifier<int>(0);
-  final _nanny = FrameNanny();
 
   _CustomPainter _painter;
   Ticker _ticker;
@@ -65,7 +65,7 @@ class _BoxPlotBarState extends State<BoxPlotBar> with TickerProviderStateMixin {
       return;
     }
 
-    _painter.update(_nanny.tick(delta));
+    _painter.update(delta > _maxFrameDuration ? _maxFrameDuration : delta);
 
     if (!_painter.stable) {
       _notifier.value++;
