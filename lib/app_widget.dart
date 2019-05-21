@@ -8,7 +8,7 @@ import 'package:box_plot/box_plot.dart';
 import 'package:box_plot/sample_set.dart';
 import 'package:flutter_web/material.dart';
 
-final _autoAdd = true;
+final _autoAdd = false;
 
 class AppWidget extends StatefulWidget {
   final data = SampleSet<num>(source: <num>[9, 21]);
