@@ -7,7 +7,7 @@ targets:
           filter_outputs: false
       build_web_compilers|entrypoint:
         generate_for:
-        - web/**.dart
+        - example/**.dart
         options:
           dart2js_args:
             - --dump-info
